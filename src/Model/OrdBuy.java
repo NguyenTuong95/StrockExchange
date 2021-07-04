@@ -1,39 +1,40 @@
 package Model;
 
 
+
 import java.sql.Date;
 import java.util.Random;
 
 public class OrdBuy implements Comparable<OrdBuy>{
-    private int orderSellID;
+    private int orderBuyID;
     private int stockID;
     private Date createTime;
     private int initAmount;
-  
+    private int exchangedAmount;
     private int tradeAccountID;
     private static int cnt = 0;
 
     public OrdBuy(){
-        this.orderSellID = cnt++;
-        this.stockID = new Random(this.orderSellID + 10).nextInt() % 1001;
+        this.orderBuyID = cnt++;
+        this.stockID = new Random(this.orderBuyID + 10).nextInt() % 1001;
         this.tradeAccountID = new Random(this.stockID + 10).nextInt() % 1001;
-        //this.createTime = new Date(exchangedAmount);
+        //this.createTime = new Date();
     }
 
-    public OrdBuy(int orderSellID, int stockID,  int tradeAccountID, int initAmount, int exchangedAmount){
-        this.orderSellID = orderSellID;
+    public OrdBuy(int orderBuyID, int stockID,  int tradeAccountID, int initAmount, int exchangedAmount){
+        this.orderBuyID = orderBuyID;
         this.stockID = stockID;
         //this.createTime = new Date();
         this.initAmount = exchangedAmount;
         this.tradeAccountID = tradeAccountID;
     }
 
-    public int getOrderSellID() {
-        return this.orderSellID;
+    public int getOrderBuyID() {
+        return this.orderBuyID;
     }
 
-    public void setOrderSellID(int orderSellID) {
-        this.orderSellID = orderSellID;
+    public void setOrderBuyID(int orderBuyID) {
+        this.orderBuyID = orderBuyID;
     }
 
     public int getStockID() {
@@ -83,7 +84,7 @@ public class OrdBuy implements Comparable<OrdBuy>{
 
     @Override
     public String toString() {   
-        return " --[ORDSELL] ID: " + this.orderSellID + " stockID: " + this.stockID + " tradeAccountID: " + this.tradeAccountID + " time: " 
+        return " --[ORDSELL] ID: " + this.orderBuyID + " stockID: " + this.stockID + " tradeAccountID: " + this.tradeAccountID + " time: " 
         + createTime + " amount: " + this.initAmount + " exchangeAmount: " + this.exchangedAmount;
     }
 

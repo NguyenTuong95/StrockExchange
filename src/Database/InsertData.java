@@ -5,6 +5,10 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import Model.Account;
 import Model.Company;
+import Model.OrdBuy;
+import Model.OrdSell;
+import Model.Transaction;
+import Model.TransactionDetail;
 import Util.Utility;
 
 public class InsertData {
@@ -54,5 +58,80 @@ public class InsertData {
         }
     }
 
+
+    public void insertTransactionDetail(TransactionDetail transactionDetail){
+        if(connection == null){       
+            return;
+        }
+
+        String sql = "INSERT INTO Transaction_Detail(orderBuyID, transactionID, orderSellID, amount, price) VALUES (?, ?, ?, ?, ?)";
+        try(PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setInt(1, transactionDetail.getOrderBuyID());
+            statement.setInt(2, transactionDetail.getTransactionID());
+            statement.setInt(3, transactionDetail.getOrderSellID());
+            statement.setInt(4, transactionDetail.getAmount());
+            statement.setFloat(5, transactionDetail.getPrice());
+            statement.executeUpdate();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void insertTransaction(Transaction transaction){
+        if(connection == null){       
+            return;
+        }
+        String sql = "INSERT INTO Transaction(transactionID, createTime) VALUES (?, ?)";
+        try(PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setInt(1, transaction.getTransactionID());
+            statement.setDate(2, transaction.getCreateTime());
+            statement.executeUpdate();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+
+    public void insertOrdBuy(OrdBuy ordBuy){
+        if(connection == null){       
+            return;
+        }
+        String sql = "INSERT INTO Order_Buy(orderBuyID, traderAccountID, stockID, createTime, initAmount, exchangeAmount) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try(PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setInt(1, ordBuy.getOrderBuyID());
+            statement.setInt(2, ordBuy.getTradeAccountID());
+            statement.setInt(3, ordBuy.getStockID());
+            statement.setDate(4, ordBuy.getCreateTime());
+            statement.setInt(5, ordBuy.getInitAmount());
+            statement.setInt(6, ordBuy.getExchangedAmount());
+            statement.executeUpdate();
+
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+
+    }
+
+    public void insertOrdSell(OrdSell ordSell){
+        if(connection == null){       
+            return;
+        }
+        String sql = "INSERT INTO Order_Sell(orderSellID, traderAccountID, stockID, createTime, initAmount, exchangeAmount) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try(PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setInt(1, ordSell.getOrderSellID());
+            statement.setInt(2, ordSell.getTradeAccountID());
+            statement.setInt(3, ordSell.getStockID());
+            statement.setDate(4, ordSell.getCreateTime());
+            statement.setInt(5, ordSell.getInitAmount());
+            statement.setInt(6, ordSell.getExchangedAmount());
+            statement.executeUpdate();
+
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+
+    }
 
 }

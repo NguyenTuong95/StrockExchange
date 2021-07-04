@@ -1,6 +1,7 @@
 package Model;
 
-import java.util.Date;
+
+import java.sql.Date;
 import java.util.Random;
 
 public class OrdBuy implements Comparable<OrdBuy>{
@@ -8,7 +9,7 @@ public class OrdBuy implements Comparable<OrdBuy>{
     private int stockID;
     private Date createTime;
     private int initAmount;
-    private int exchangedAmount;
+  
     private int tradeAccountID;
     private static int cnt = 0;
 
@@ -16,13 +17,13 @@ public class OrdBuy implements Comparable<OrdBuy>{
         this.orderSellID = cnt++;
         this.stockID = new Random(this.orderSellID + 10).nextInt() % 1001;
         this.tradeAccountID = new Random(this.stockID + 10).nextInt() % 1001;
-        this.createTime = new Date();
+        //this.createTime = new Date(exchangedAmount);
     }
 
     public OrdBuy(int orderSellID, int stockID,  int tradeAccountID, int initAmount, int exchangedAmount){
         this.orderSellID = orderSellID;
         this.stockID = stockID;
-        this.createTime = new Date();
+        //this.createTime = new Date();
         this.initAmount = exchangedAmount;
         this.tradeAccountID = tradeAccountID;
     }

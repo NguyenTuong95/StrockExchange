@@ -142,10 +142,9 @@ CREATE TABLE IF NOT EXISTS `stockexchange`.`ORDER_BUY` (
   `orderBuyID` INT NOT NULL AUTO_INCREMENT,
   `tradeAccountID` INT NOT NULL,
   `stockID` INT NOT NULL,
-  `createTime` DATETIME NOT NULL,
-  `initAmount` INT NOT NULL,
-  `exchangedAmount` INT NOT NULL,
-  PRIMARY KEY (`orderBuyID`, `tradeAccountID`, `stockID`, `createTime`),
+  `amount` INT NOT NULL,
+  `price` FLOAT NOT NULL,
+  PRIMARY KEY (`orderBuyID`, `tradeAccountID`, `stockID`),
   INDEX `fk_Order_Buy_stock1_idx` (`stockID` ASC) VISIBLE,
   INDEX `fk_order_buy_trader1_idx` (`tradeAccountID` ASC) VISIBLE,
   CONSTRAINT `fk_order_Buy_stock`
@@ -170,11 +169,10 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `stockexchange`.`ORDER_SELL` (
   `orderSellID` INT NOT NULL AUTO_INCREMENT,
   `stockID` INT NOT NULL,
-  `createTime` DATETIME NOT NULL,
-  `initAmount` INT NOT NULL,
-  `exchangedAmount` INT NOT NULL,
   `traderAccountID` INT NOT NULL,
-  PRIMARY KEY (`orderSellID`, `stockID`, `createTime`, `traderAccountID`),
+  `amount` INT NOT NULL,
+  `price` FLOAT NOT NULL,
+  PRIMARY KEY (`orderSellID`, `stockID`, `traderAccountID`),
   INDEX `fk_Order_Sell_stock1_idx` (`stockID` ASC) VISIBLE,
   INDEX `fk_order_sell_trader1_idx` (`traderAccountID` ASC) VISIBLE,
   CONSTRAINT `fk_order_sell_stock`

@@ -7,6 +7,7 @@ import Model.Account;
 import Model.Company;
 import Model.OrdBuy;
 import Model.OrdSell;
+import Model.Trader;
 import Model.Transaction;
 import Model.TransactionDetail;
 import Util.Utility;
@@ -131,6 +132,24 @@ public class InsertData {
         }catch(SQLException ex){
             ex.printStackTrace();
         }
+
+    }
+
+    public void insertTrader(Trader trader){
+        if(connection == null){       
+            return;
+        }
+        String sql = "INSERT INTO Trader(traderAccount, balance) VALUES (?, ?)";
+
+        try(PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setInt(1, trader.getTraderAccountID());
+            statement.setFloat(2, trader.getBalance());
+            statement.executeUpdate();
+
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+
 
     }
 

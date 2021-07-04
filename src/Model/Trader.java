@@ -1,68 +1,39 @@
 package Model;
 
-import java.util.Date;
-
-import Util.Utility;
 
 public class Trader {
-    private int traderID;
-    private int tradeType;
-    private int tradeStatus;
-    private Date tradeDate;
-    private User user;
-    private Stock stock;
-    private static int cnt = 1;
+    
+    private int traderAccountID;
+    private float balance;
 
+    private static int cnt = 0;
 
     public Trader(){
-        this.traderID = cnt++;
-        this.user = Utility.generateUser();
-        this.stock = new Stock();
-    }
-    public Trader(User user, Stock stock, int type, int status, Date date){
-        this.user = user;
-        this.stock = stock;
-        this.tradeType = type;
-        this.tradeStatus = status;
-        this.tradeDate = date; 
+        this.traderAccountID = cnt++;
     }
 
-    public int getTraderID() {
-        return this.traderID;
+    public Trader(int id, float balance){
+        this.traderAccountID = id;
+        this.balance = balance;
     }
 
-    public void setTraderId(int traderID) {
-        this.traderID = traderID;
+    public int getTraderAccountID() {
+        return this.traderAccountID;
     }
 
-    public int getTradeType() {
-        return this.tradeType;
+    public void setTraderAccountID(int traderAccountID) {
+        this.traderAccountID = traderAccountID;
     }
 
-    public void setTradeType(int tradeType) {
-        this.tradeType = tradeType;
+    public float getBalance() {
+        return this.balance;
     }
 
-    public int getTradeStatus() {
-        return this.tradeStatus;
+    public void setBalance(float balance) {
+        this.balance = balance;
     }
 
-    public void setTradeStatus(int tradeStatus) {
-        this.tradeStatus = tradeStatus;
-    }
 
-    public Date getTradeDate() {
-        return this.tradeDate;
-    }
-
-    public void setTrdeDate(Date tradeDate) {
-        this.tradeDate = tradeDate;
-    }
-
-    @Override
-    public String toString() {
-        
-        return user.toString();
-    }
+   
 
 }

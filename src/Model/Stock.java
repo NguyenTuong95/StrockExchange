@@ -3,16 +3,25 @@ package Model;
 public class Stock {
 
     private int stockID;
-    private int stockUperPrice;
-    private int stockLowerPrice;
-    private int stockActionPrice;
+    private int companyID;
+    private String code;
+    private float lastPrice;
+    private int minPrice;
+    private int maxPrice;
     private static int cnt = 0;
 
     public Stock(){
-        stockID = cnt++;
+        this.stockID = this.companyID = cnt++;
     }
 
-    public Stock(int stockUperPrice){}
+    public Stock(int stockID, int companyID, String code, float lastPrice, int minPrice, int maxPrice){
+        this.stockID = stockID;
+        this.companyID = companyID;
+        this.code = code;
+        this.lastPrice = lastPrice;
+        this.minPrice = minPrice;
+        this.maxPrice = maxPrice;
+    }
 
     public int getStockID() {
         return this.stockID;
@@ -22,30 +31,51 @@ public class Stock {
         this.stockID = stockID;
     }
 
-    public int getStockUperPrice() {
-        return this.stockUperPrice;
+    public int getCompanyID() {
+        return this.companyID;
     }
 
-    public void setStockUperPrice(int stockUperPrice) {
-        this.stockUperPrice = stockUperPrice;
+    public void setCompanyID(int companyID) {
+        this.companyID = companyID;
     }
 
-    public int getStockLowerPrice() {
-        return this.stockLowerPrice;
+    public String getCode() {
+        return this.code;
     }
 
-    public void setStockLowerPrice(int stockLowerPrice) {
-        this.stockLowerPrice = stockLowerPrice;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public int getStockActionPrice() {
-        return this.stockActionPrice;
+    public float getLastPrice() {
+        return this.lastPrice;
     }
 
-    public void setStockActionPrice(int stockActionPrice) {
-        this.stockActionPrice = stockActionPrice;
+    public void setLastPrice(float lastPrice) {
+        this.lastPrice = lastPrice;
     }
 
-    
+    public int getMinPrice() {
+        return this.minPrice;
+    }
+
+    public void setMinPrice(int minPrice) {
+        this.minPrice = minPrice;
+    }
+
+    public int getMaxPrice() {
+        return this.maxPrice;
+    }
+
+    public void setMaxPrice(int maxPrice) {
+        this.maxPrice = maxPrice;
+    }
+
+
+    @Override
+    public String toString() { 
+        return " --[STOCK] ID: " + this.stockID + " code: " + this.code+ " lastPrice: " + this.lastPrice 
+        + "minPrice: " + this.minPrice + "maxPrice: " + this.maxPrice + " --";
+    }
 
 }

@@ -1,41 +1,89 @@
 package Model;
 
+import java.util.Date;
+import java.util.Random;
+
 public class OrdBuy implements Comparable<OrdBuy>{
-    private int price;
-    private int amount;
-    private Trader trader;
+    private int orderSellID;
+    private int stockID;
+    private Date createTime;
+    private int initAmount;
+    private int exchangedAmount;
+    private int tradeAccountID;
+    private static int cnt = 0;
 
-    public OrdBuy(Trader trader, int price, int amount){
-        this.trader = trader;
-        this.price = price;
-        this.amount = amount;
+    public OrdBuy(){
+        this.orderSellID = cnt++;
+        this.stockID = new Random(this.orderSellID + 10).nextInt() % 1001;
+        this.tradeAccountID = new Random(this.stockID + 10).nextInt() % 1001;
+        this.createTime = new Date();
     }
 
-    public int getPrice() {
-        return this.price;
+    public OrdBuy(int orderSellID, int stockID,  int tradeAccountID, int initAmount, int exchangedAmount){
+        this.orderSellID = orderSellID;
+        this.stockID = stockID;
+        this.createTime = new Date();
+        this.initAmount = exchangedAmount;
+        this.tradeAccountID = tradeAccountID;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public int getOrderSellID() {
+        return this.orderSellID;
     }
 
-    public int getAmount() {
-        return this.amount;
+    public void setOrderSellID(int orderSellID) {
+        this.orderSellID = orderSellID;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public int getStockID() {
+        return this.stockID;
     }
 
+    public void setStockID(int stockID) {
+        this.stockID = stockID;
+    }
+
+    public Date getCreateTime() {
+        return this.createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public int getInitAmount() {
+        return this.initAmount;
+    }
+
+    public void setInitAmount(int initAmount) {
+        this.initAmount = initAmount;
+    }
+
+    public int getExchangedAmount() {
+        return this.exchangedAmount;
+    }
+
+    public void setExchangedAmount(int exchangedAmount) {
+        this.exchangedAmount = exchangedAmount;
+    }
+
+    public int getTradeAccountID() {
+        return this.tradeAccountID;
+    }
+
+    public void setTradeAccountID(int tradeAccountID) {
+        this.tradeAccountID = tradeAccountID;
+    }
+    
     @Override
     public int compareTo(OrdBuy o) {
-        return price - o.price;
+        return this.exchangedAmount - o.exchangedAmount;
     }
 
     @Override
-    public String toString() {
-        // TODO Auto-generated method stub
-        return trader.toString() + " price:" + price + " amount: " + amount;
+    public String toString() {   
+        return " --[ORDSELL] ID: " + this.orderSellID + " stockID: " + this.stockID + " tradeAccountID: " + this.tradeAccountID + " time: " 
+        + createTime + " amount: " + this.initAmount + " exchangeAmount: " + this.exchangedAmount;
     }
 
 }

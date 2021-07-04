@@ -2,20 +2,26 @@ package Model;
 
 public class Company {
     private int companyID;
-    private String companyName;
-    private String companyEmail;
-    private String companyAddress;
-    private String companyPhone;
+    private String name;
+    private String email;
+    private String address;
+    private String phone;
+    private String code;
+
+    
+
     private static int cnt = 0;
     public Company(){
         companyID = cnt++;
     }
 
-    public Company(String name, String email, String phone, String address){
-        this.companyName = name;
-        this.companyAddress = address;
-        this.companyEmail = email;
-        this.companyPhone = phone;
+    public Company(int id, String name, String email, String phone, String address, String code){
+        this.companyID = id;
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.phone = phone;
+        this.code = code;
     }
 
     public int getCompanyID() {
@@ -26,37 +32,45 @@ public class Company {
         this.companyID = companyID;
     }
 
-    public String getCompanyName() {
-        return this.companyName;
+    
+    public String getName() {
+        return this.name;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCompanyEmail() {
-        return this.companyEmail;
+    public String getEmail() {
+        return this.email;
     }
 
-    public void setCompanyEmail(String companyEmail) {
-        this.companyEmail = companyEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getCompanyAddress() {
-        return this.companyAddress;
+    public String getAddress() {
+        return this.address;
     }
 
-    public void setCompanyAddress(String companyAddress) {
-        this.companyAddress = companyAddress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getCompanyPhone() {
-        return this.companyPhone;
+    public String getPhone() {
+        return this.phone;
     }
 
-    public void setCompanyPhone(String companyPhone) {
-        this.companyPhone = companyPhone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
+    public String getCode() {
+        return this.code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
     
 }

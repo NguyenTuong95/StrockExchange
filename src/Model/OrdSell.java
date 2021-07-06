@@ -70,7 +70,7 @@ public class OrdSell implements Comparable<OrdSell>{
     public int compareTo(OrdSell o) {
         if(this.price != o.price){
 
-            return (int)(this.price - o.price);
+            return this.price - o.price;
         }
 
         return this.amount - o.amount;

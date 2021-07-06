@@ -4,7 +4,7 @@ package Model;
 public class Trader {
     
     private int traderAccountID;
-    private float balance;
+    private int balance;
 
     private static int cnt = 0;
 
@@ -12,7 +12,7 @@ public class Trader {
         this.traderAccountID = cnt++;
     }
 
-    public Trader(int id, float balance){
+    public Trader(int id, int balance){
         this.traderAccountID = id;
         this.balance = balance;
     }
@@ -25,11 +25,11 @@ public class Trader {
         this.traderAccountID = traderAccountID;
     }
 
-    public float getBalance() {
+    public int getBalance() {
         return this.balance;
     }
 
-    public void setBalance(float balance) {
+    public void setBalance(int balance) {
         this.balance = balance;
     }
 

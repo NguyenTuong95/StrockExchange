@@ -6,9 +6,9 @@ public class Stock {
     private int stockID;
     private int companyID;
     private String code;
-    private float lastPrice;
-    private float minPrice;
-    private float maxPrice;
+    private int lastPrice;
+    private int minPrice;
+    private int maxPrice;
 
 
     private static int cnt = 0;
@@ -17,7 +17,7 @@ public class Stock {
         this.stockID = this.companyID = cnt++;       
     }
 
-    public Stock(int stockID, int companyID, String code, float lastPrice, float minPrice, float maxPrice){
+    public Stock(int stockID, int companyID, String code, int lastPrice, int minPrice, int maxPrice){
         this.stockID = stockID;
         this.companyID = companyID;
         this.code = code;
@@ -50,27 +50,27 @@ public class Stock {
         this.code = code;
     }
 
-    public float getLastPrice() {
+    public int getLastPrice() {
         return this.lastPrice;
     }
 
-    public void setLastPrice(float lastPrice) {
+    public void setLastPrice(int lastPrice) {
         this.lastPrice = lastPrice;
     }
 
-    public float getMinPrice() {
+    public int getMinPrice() {
         return this.minPrice;
     }
 
-    public void setMinPrice(float minPrice) {
+    public void setMinPrice(int minPrice) {
         this.minPrice = minPrice;
     }
 
-    public float getMaxPrice() {
+    public int getMaxPrice() {
         return this.maxPrice;
     }
 
-    public void setMaxPrice(float maxPrice) {
+    public void setMaxPrice(int maxPrice) {
         this.maxPrice = maxPrice;
     }
 

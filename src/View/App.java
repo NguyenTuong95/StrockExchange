@@ -6,9 +6,12 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Random;
 
+import Controller.StockController;
 import Database.InsertData;
 import Model.Account;
 import Model.Company;
+import Model.OrdBuy;
+import Model.OrdSell;
 import Util.Utility;
 
 public class App {
@@ -25,9 +28,9 @@ public class App {
 
         // System.out.println("Xác định và in ra giao dịch có số lượng nhỏ nhất");
         // System.out.println(sellQueue.stream().sorted((t1,t2)->t1.getAmount() - (t2.getAmount())).findFirst().toString());
-        InsertData insertData = new InsertData();
+        // InsertData insertData = new InsertData();
 
-        utility = Utility.getInstance();
+        // utility = Utility.getInstance();
         // for(int i = 0; i < NUMBER; i++){
         //     Account account = new Account();
         //     account = utility.generateAccount();
@@ -44,6 +47,11 @@ public class App {
         //     company.setCode("" + new Random().nextInt(10001));
         //     insertData.insertCompanyData(company);
         // } 
+
+        
+            Thread t = new Thread(new StockController());
+            t.start();
+            
 
     }
 

@@ -5,9 +5,9 @@ public class TransactionDetail {
     private int orderSellID;
     private int transactionID;
     private int amount;
-    private float price;
+    private int price;
 
-    public TransactionDetail(int orderBuyID, int orderSellID, int transactionID,int amount, float price){
+    public TransactionDetail(int orderBuyID, int orderSellID, int transactionID,int amount, int price){
         this.orderBuyID = orderBuyID;
         this.orderSellID = orderSellID;
         this.transactionID = transactionID;
@@ -47,11 +47,11 @@ public class TransactionDetail {
         this.amount = amount;
     }
 
-    public float getPrice() {
+    public int getPrice() {
         return this.price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(int price) {
         this.price = price;
     }
     

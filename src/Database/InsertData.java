@@ -73,7 +73,8 @@ public class InsertData {
             statement.setInt(2, transactionDetail.getTransactionID());
             statement.setInt(3, transactionDetail.getOrderSellID());
             statement.setInt(4, transactionDetail.getAmount());
-            statement.setFloat(5, transactionDetail.getPrice());
+            statement.setInt(5, transactionDetail.getPrice());
+
             statement.executeUpdate();
         }catch(SQLException ex){
             ex.printStackTrace();
@@ -161,9 +162,9 @@ public class InsertData {
         try(PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setInt(1, stock.getCompanyID());
             statement.setString(2, stock.getCode());
-            statement.setFloat(3, stock.getLastPrice());
-            statement.setFloat(4, stock.getMinPrice());
-            statement.setFloat(5, stock.getMaxPrice());
+            statement.setInt(3, stock.getLastPrice());
+            statement.setInt(4, stock.getMinPrice());
+            statement.setInt(5, stock.getMaxPrice());
             statement.executeUpdate();
 
         }catch(SQLException ex){

@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `stockexchange`.`COMPANY` (
   `address` VARCHAR(50) NOT NULL,
   `phone` VARCHAR(15) NOT NULL,
   `email` VARCHAR(30) NOT NULL,
-  `code` VARCHAR(10) NOT NULL,
+  `code` VARCHAR(10) NULL,
   PRIMARY KEY (`companyID`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 3
@@ -58,10 +58,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `stockexchange`.`STOCK` (
   `stockID` INT NOT NULL AUTO_INCREMENT,
   `companyID` INT NOT NULL,
-  `code` VARCHAR(4) NOT NULL,
-  `lastPrice` DECIMAL(10,2) NOT NULL,
-  `minPrice` INT NOT NULL,
-  `maxPrice` INT NOT NULL,
+  `code` VARCHAR(4) NULL,
+  `lastPrice` DECIMAL(10,2) NULL,
+  `minPrice` FLOAT NULL,
+  `maxPrice` FLOAT NULL,
+  `totalAmount` INT NOT NULL,
   PRIMARY KEY (`stockID`, `companyID`),
   INDEX `comany_id_idx` (`companyID` ASC) VISIBLE,
   CONSTRAINT `comany_id`

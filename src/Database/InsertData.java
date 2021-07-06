@@ -7,6 +7,8 @@ import Model.Account;
 import Model.Company;
 import Model.OrdBuy;
 import Model.OrdSell;
+import Model.Own;
+import Model.Stock;
 import Model.Trader;
 import Model.Transaction;
 import Model.TransactionDetail;
@@ -97,15 +99,13 @@ public class InsertData {
         if(connection == null){       
             return;
         }
-        String sql = "INSERT INTO Order_Buy(orderBuyID, traderAccountID, stockID, createTime, initAmount, exchangeAmount) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Order_Buy(traderAccountID, stockID, amount, price) VALUES (?, ?, ?, ?)";
 
         try(PreparedStatement statement = connection.prepareStatement(sql)){
-            statement.setInt(1, ordBuy.getOrderBuyID());
-            statement.setInt(2, ordBuy.getTradeAccountID());
-            statement.setInt(3, ordBuy.getStockID());
-            statement.setDate(4, ordBuy.getCreateTime());
-            statement.setInt(5, ordBuy.getInitAmount());
-            statement.setInt(6, ordBuy.getExchangedAmount());
+            statement.setInt(1, ordBuy.getTraderAccountID());
+            statement.setInt(2, ordBuy.getStockID());
+            statement.setInt(3, ordBuy.getAmount());
+            statement.setInt(4, ordBuy.getPrice());
             statement.executeUpdate();
 
         }catch(SQLException ex){
@@ -118,15 +118,14 @@ public class InsertData {
         if(connection == null){       
             return;
         }
-        String sql = "INSERT INTO Order_Sell(orderSellID, traderAccountID, stockID, createTime, initAmount, exchangeAmount) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Order_Sell(traderAccountID, stockID, amount, price) VALUES (?, ?, ?, ?)";
 
         try(PreparedStatement statement = connection.prepareStatement(sql)){
-            statement.setInt(1, ordSell.getOrderSellID());
-            statement.setInt(2, ordSell.getTradeAccountID());
-            statement.setInt(3, ordSell.getStockID());
-            statement.setDate(4, ordSell.getCreateTime());
-            statement.setInt(5, ordSell.getInitAmount());
-            statement.setInt(6, ordSell.getExchangedAmount());
+            statement.setInt(1, ordSell.getTraderAccountID());
+            statement.setInt(2, ordSell.getStockID());
+            statement.setInt(3, ordSell.getAmount());
+            statement.setInt(4, ordSell.getPrice());
+            
             statement.executeUpdate();
 
         }catch(SQLException ex){
@@ -149,8 +148,45 @@ public class InsertData {
         }catch(SQLException ex){
             ex.printStackTrace();
         }
-
-
     }
 
+
+
+    public void insertStock(Stock stock){
+        if(connection == null){       
+            return;
+        }
+        String sql = "INSERT INTO Stock(companyID, code, lastPrice, minPrice, maxPrice) VALUES (?, ?, ?, ?, ?)";
+
+        try(PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setInt(1, stock.getCompanyID());
+            statement.setString(2, stock.getCode());
+            statement.setFloat(3, stock.getLastPrice());
+            statement.setFloat(4, stock.getMinPrice());
+            statement.setFloat(5, stock.getMaxPrice());
+            statement.executeUpdate();
+
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+
+    public void insertOwn(Own own){
+        if(connection == null){       
+            return;
+        }
+        String sql = "INSERT INTO Stock(traderAccountID, stockID, amount) VALUES (?, ?, ?)";
+
+        try(PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setInt(1, own.getTraderAccountID());
+            statement.setInt(2, own.getStockID());
+            statement.setInt(3, own.getAmount());
+            
+            statement.executeUpdate();
+
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
 }

@@ -1,6 +1,6 @@
 package Model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Transaction {
     private int transactionID;
@@ -8,7 +8,7 @@ public class Transaction {
     private static int cnt = 0;
 
     public Transaction(){
-        this.createTime = new Date();
+      
         this.transactionID = cnt++;
     }
     
@@ -24,8 +24,9 @@ public class Transaction {
         return this.createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Date createTime) {  
         this.createTime = createTime;
+
     }
     
 }

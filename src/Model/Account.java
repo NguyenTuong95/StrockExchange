@@ -1,7 +1,6 @@
 package Model;
 
-import Security.GenKeyFromPass;
-import Util.Utility;
+import Security.EncryptString;
 
 public class Account {
     private int accountID;
@@ -14,7 +13,7 @@ public class Account {
     private String password;
     private int isAdmin;
     private static int cnt = 0;
-    private GenKeyFromPass genKeyFromPass;
+
 
     public Account(){
         this.accountID = cnt++;
@@ -22,19 +21,14 @@ public class Account {
 
     public Account(String fName, String lName, String address, 
     String phone, String email, String username, String password, int isAdmin){
-        genKeyFromPass = GenKeyFromPass.getInstance();
         this.fName = fName;
         this.lName = lName;
         this.address = address;
         this.phone = phone;
         this.email = email;
         this.username = username;
-        this.isAdmin = isAdmin;
-        try{
-            this.password = genKeyFromPass.generatePass(password);
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
+        this.isAdmin = isAdmin;  
+        this.password = EncryptString.encrypt(password);    
        
     }
 

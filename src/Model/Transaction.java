@@ -1,15 +1,19 @@
 package Model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Transaction {
     private int transactionID;
-    private Date createTime;
+    private Timestamp createTime;
     private static int cnt = 0;
 
     public Transaction(){
-      
-        this.transactionID = cnt++;
+        this.transactionID = cnt++;      
+    }
+
+    public Transaction(int transactionID){
+        this.transactionID = transactionID;
+        this.createTime = new Timestamp(System.currentTimeMillis());
     }
     
     public int getTransactionID() {
@@ -20,11 +24,11 @@ public class Transaction {
         this.transactionID = transactionID;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return this.createTime;
     }
 
-    public void setCreateTime(Date createTime) {  
+    public void setCreateTime(Timestamp createTime) {  
         this.createTime = createTime;
 
     }

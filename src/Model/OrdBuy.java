@@ -9,7 +9,7 @@ public class OrdBuy implements Comparable<OrdBuy>{
     private int traderAccountID;
     private int amount;
     private int price;
-
+    private int exchangeAmount;
     
 
     private static int cnt = 0;
@@ -21,12 +21,13 @@ public class OrdBuy implements Comparable<OrdBuy>{
     }
 
 
-    public OrdBuy(int stockID, int traderAccountID, int amount, int price){
+    public OrdBuy(int stockID, int traderAccountID, int amount, int price, int exchangeAmount){
         this.orderBuyID = cnt++;
         this.stockID = stockID;
         this.traderAccountID = traderAccountID;
         this.amount = amount;
         this.price = price;
+        this.exchangeAmount = exchangeAmount;
     }
   
     public int getOrderBuyID() {
@@ -68,23 +69,31 @@ public class OrdBuy implements Comparable<OrdBuy>{
     public void setPrice(int price) {
         this.price = price;
     }
+
+    public void setExchangeAmount(int exchangeAmount){
+        this.exchangeAmount = exchangeAmount;
+    }
+
+    public int getExchangeAmount(){
+        return this.exchangeAmount;
+    }
     
     @Override
     public int compareTo(OrdBuy o) {
 
         if(this.price != o.price){
 
-            return this.price - o.price;
+            return o.price - this.price;
         }
 
-        return this.amount - o.amount;
+        return o.amount - this.amount;
         
     }
 
     @Override
     public String toString() {   
         return " --[ORDBUY] ID: " + this.orderBuyID + " stockID: " + this.stockID + " traderAccountID: " + this.traderAccountID 
-       + " amount: " + this.amount + " price: " + this.price;
+       + " amount: " + this.amount + " price: " + this.price + " exchangeAmount: " + this.exchangeAmount;
     }
 
 }

@@ -17,8 +17,8 @@ public class Stock {
         this.stockID = this.companyID = cnt++;       
     }
 
-    public Stock(int stockID, int companyID, String code, int lastPrice, int minPrice, int maxPrice){
-        this.stockID = stockID;
+    public Stock(int companyID, String code, int lastPrice, int minPrice, int maxPrice){
+        this.stockID = cnt++;
         this.companyID = companyID;
         this.code = code;
         this.lastPrice = lastPrice;

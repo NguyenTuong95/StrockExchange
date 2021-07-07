@@ -58,11 +58,10 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `stockexchange`.`STOCK` (
   `stockID` INT NOT NULL AUTO_INCREMENT,
   `companyID` INT NOT NULL,
-  `code` VARCHAR(4) NULL,
-  `lastPrice` DECIMAL(10,2) NULL,
-  `minPrice` FLOAT NULL,
-  `maxPrice` FLOAT NULL,
-  `totalAmount` INT NOT NULL,
+  `code` VARCHAR(15) NULL,
+  `lastPrice` INT NULL,
+  `minPrice` INT NULL,
+  `maxPrice` INT NULL,
   PRIMARY KEY (`stockID`, `companyID`),
   INDEX `comany_id_idx` (`companyID` ASC) VISIBLE,
   CONSTRAINT `comany_id`
@@ -82,7 +81,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `stockexchange`.`STOCK_HISTORY` (
   `stock_id` INT NOT NULL,
   `updateTime` DATETIME NOT NULL,
-  `price` DECIMAL(10,2) NULL DEFAULT NULL,
+  `price` INT NULL DEFAULT NULL,
   PRIMARY KEY (`stock_id`, `updateTime`),
   INDEX `fk_stockhistory_stock1_idx` (`stock_id` ASC) VISIBLE,
   CONSTRAINT `fk_stockhistory_stock1`
@@ -100,7 +99,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `stockexchange`.`TRADER` (
   `traderAccountID` INT NOT NULL,
-  `balance` FLOAT NULL,
+  `balance` INT NULL,
   PRIMARY KEY (`traderAccountID`),
   INDEX `fk_trader_account1_idx` (`traderAccountID` ASC) VISIBLE,
   CONSTRAINT `fk_trader_account`
@@ -144,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `stockexchange`.`ORDER_BUY` (
   `tradeAccountID` INT NOT NULL,
   `stockID` INT NOT NULL,
   `amount` INT NOT NULL,
-  `price` FLOAT NOT NULL,
+  `price` INT NOT NULL,
   PRIMARY KEY (`orderBuyID`, `tradeAccountID`, `stockID`),
   INDEX `fk_Order_Buy_stock1_idx` (`stockID` ASC) VISIBLE,
   INDEX `fk_order_buy_trader1_idx` (`tradeAccountID` ASC) VISIBLE,
@@ -172,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `stockexchange`.`ORDER_SELL` (
   `stockID` INT NOT NULL,
   `traderAccountID` INT NOT NULL,
   `amount` INT NOT NULL,
-  `price` FLOAT NOT NULL,
+  `price` INT NOT NULL,
   PRIMARY KEY (`orderSellID`, `stockID`, `traderAccountID`),
   INDEX `fk_Order_Sell_stock1_idx` (`stockID` ASC) VISIBLE,
   INDEX `fk_order_sell_trader1_idx` (`traderAccountID` ASC) VISIBLE,
@@ -212,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `stockexchange`.`TRANSACTION_DETAIL` (
   `transactionID` INT NOT NULL,
   `orderSellID` INT NOT NULL,
   `amount` INT NOT NULL,
-  `price` DECIMAL(10,2) NULL,
+  `price` INT NULL,
   PRIMARY KEY (`orderBuyID`, `transactionID`, `orderSellID`),
   INDEX `fk_Order_Buy_has_Order_Sell_Order_Sell1_idx` (`orderSellID` ASC) VISIBLE,
   INDEX `fk_Order_Buy_has_Order_Sell_Order_Buy1_idx` (`orderBuyID` ASC) VISIBLE,
@@ -243,8 +242,8 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `stockexchange`.`MIN_MAX_PRICE_HISTORY` (
   `stockID` INT NOT NULL,
   `timeUpdate` DATETIME NOT NULL,
-  `minPrice` DECIMAL(10,2) NULL DEFAULT NULL,
-  `maxPrice` DECIMAL(10,2) NULL,
+  `minPrice` INT NULL DEFAULT NULL,
+  `maxPrice` INT NULL,
   PRIMARY KEY (`stockID`, `timeUpdate`),
   INDEX `fk_stockhistory_stock1_idx` (`stockID` ASC) VISIBLE,
   CONSTRAINT `fk_stockhistory_stock10`

@@ -8,23 +8,7 @@ public class OrdSell implements Comparable<OrdSell>{
     private int traderAccountID;
     private int price;
     private int amount;
-
-    public int getPrice() {
-        return this.price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public int getAmount() {
-        return this.amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
+    private int exchangeAmount;
     private static int cnt = 0;
 
     public OrdSell(){
@@ -33,12 +17,13 @@ public class OrdSell implements Comparable<OrdSell>{
         this.traderAccountID = new Random(this.stockID + 10).nextInt() % 1001;
     }
 
-    public OrdSell(int stockID, int traderAccountID, int amount, int price){
+    public OrdSell(int stockID, int traderAccountID, int amount, int price, int exchangeAmount){
         this.orderSellID = cnt++;
         this.stockID = stockID;
         this.traderAccountID = traderAccountID;
         this.amount = amount;
         this.price = price;
+        this.exchangeAmount = exchangeAmount;
     }
 
     public int getOrderSellID() {
@@ -65,6 +50,30 @@ public class OrdSell implements Comparable<OrdSell>{
     public void setTraderAccountID(int tradeAccountID) {
         this.traderAccountID = tradeAccountID;
     }
+
+    public int getPrice() {
+        return this.price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getAmount() {
+        return this.amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public void setExchangeAmount(int exchangeAmount){
+        this.exchangeAmount = exchangeAmount;
+    }
+
+    public int getExchangeAmount(){
+        return this.exchangeAmount;
+    }
     
     @Override
     public int compareTo(OrdSell o) {
@@ -79,7 +88,7 @@ public class OrdSell implements Comparable<OrdSell>{
     @Override
     public String toString() {   
         return " --[ORDSELL] ID: " + this.orderSellID + " stockID: " + this.stockID + " traderAccountID: " + this.traderAccountID 
-       + " amount: " + this.amount + " price: " + this.price;
+       + " amount: " + this.amount + " price: " + this.price + " exchangeAmount: " + this.exchangeAmount;
     }
 
     

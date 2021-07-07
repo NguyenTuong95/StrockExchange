@@ -4,7 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import Database.InsertData;
 import Model.Account;
+import Model.Company;
+import Model.OrdBuy;
+import Model.OrdSell;
+import Model.Own;
+import Model.Stock;
+import Model.Trader;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,6 +20,7 @@ import java.sql.SQLException;
 public class Utility {
 
     private static Utility instance = null;
+    static final int NUMBER = 333;
 
     private Utility(){}
 
@@ -113,5 +121,95 @@ public class Utility {
         return account;
     }
 
-    
+    public void generateData(){
+
+        InsertData insertData = InsertData.getInstance();
+
+        for(int i = 0; i < NUMBER; i++){
+            Account account = new Account();
+            account = generateAccount();
+            insertData.insertAccountData(account);
+        }
+
+       
+        for(int i = 0; i < listCompany.length; i++){
+            Company company = new Company();
+            company.setName(listCompany[i]);
+            company.setAddress("VietNam");
+            company.setPhone(listPhone[i%(listPhone.length)]);
+            company.setEmail("contact" + new Random().nextInt(10001) + "@gmail.com");
+            company.setCode("" + new Random().nextInt(10001));
+            insertData.insertCompanyData(company);
+        } 
+
+        
+        for(int i = 0; i < NUMBER; i++){
+            Stock stock = new Stock();
+            stock.setCompanyID(3 + new Random().nextInt(49));
+            stock.setCode("" + new Random().nextInt(10001));
+            stock.setLastPrice(150+ new Random().nextInt(150));
+            stock.setMinPrice(100 + new Random().nextInt(100));
+            stock.setMaxPrice(300 + new Random().nextInt(300));
+            insertData.insertStock(stock);
+        }
+
+
+        for(int i = 0; i < NUMBER; i++){
+            Trader trader = new Trader();
+            trader.setTraderAccountID(6 + new Random().nextInt(NUMBER-3));
+            trader.setBalance(150 + new Random().nextInt(300));
+            insertData.insertTrader(trader);
+        }
+
+
+        for(int i = 0; i < NUMBER; i++){
+            Own own = new Own();
+            own.setTraderAccountID(6 + new Random().nextInt(NUMBER-3));
+            own.setStockID(3 + new Random().nextInt(NUMBER-5));
+            own.setAmount(1000 + new Random().nextInt(3000));
+            insertData.insertOwn(own);
+            
+        }
+
+        for(int cnt = 0 ; cnt < 1; cnt++){
+            int stockID = new Random().nextInt(33);
+            for(int i = 0; i < 50; i++){
+                OrdBuy ordBuy = genDataOrdBuy(stockID);
+                OrdSell ordSell = genDataOrdSell(stockID);
+                insertData.insertOrdBuy(ordBuy);
+                insertData.insertOrdSell(ordSell);
+            }
+
+        }
+
+    }
+
+    private OrdBuy genDataOrdBuy(int stockID){
+        int traderAccountID = 6 + new Random().nextInt(100);
+        int amount = 100 + new Random().nextInt(100);
+        int price = 200 + new Random().nextInt(100); 
+        OrdBuy ordBuy = new OrdBuy(stockID, traderAccountID, amount, price, 0);
+        try{
+            Thread.sleep(30);
+        }catch(InterruptedException ie){
+            ie.printStackTrace();
+    }
+
+        return ordBuy;
+    }
+
+    private OrdSell genDataOrdSell(int stockID){
+        int traderAccountID = 6 + new Random().nextInt(100);
+        int amount = 100 + new Random().nextInt(100);
+        int price = 200 + new Random().nextInt(100); 
+        OrdSell ordSell = new OrdSell(stockID, traderAccountID, amount, price, 0);
+        try{
+            Thread.sleep(120);
+        }catch(InterruptedException ie){
+            ie.printStackTrace();
+        }
+
+        return ordSell;
+    }
+
 }

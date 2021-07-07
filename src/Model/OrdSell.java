@@ -1,8 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class OrdSell implements Comparable<OrdSell>{
+public class OrdSell implements Comparable<OrdSell>, Serializable{
     private int orderSellID;
     private int stockID;
     private int traderAccountID;
@@ -17,13 +18,12 @@ public class OrdSell implements Comparable<OrdSell>{
         this.traderAccountID = new Random(this.stockID + 10).nextInt() % 1001;
     }
 
-    public OrdSell(int stockID, int traderAccountID, int amount, int price, int exchangeAmount){
+    public OrdSell(int stockID, int traderAccountID, int amount, int price){
         this.orderSellID = cnt++;
         this.stockID = stockID;
         this.traderAccountID = traderAccountID;
         this.amount = amount;
         this.price = price;
-        this.exchangeAmount = exchangeAmount;
     }
 
     public int getOrderSellID() {

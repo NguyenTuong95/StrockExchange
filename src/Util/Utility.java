@@ -153,7 +153,7 @@ public class Utility {
             insertData.insertStock(stock);
         }
 
-
+        /*
         for(int i = 0; i < NUMBER; i++){
             Trader trader = new Trader();
             trader.setTraderAccountID(6 + new Random().nextInt(NUMBER-3));
@@ -181,6 +181,7 @@ public class Utility {
             }
 
         }
+        */
 
     }
 
@@ -188,7 +189,7 @@ public class Utility {
         int traderAccountID = 6 + new Random().nextInt(100);
         int amount = 100 + new Random().nextInt(100);
         int price = 200 + new Random().nextInt(100); 
-        OrdBuy ordBuy = new OrdBuy(stockID, traderAccountID, amount, price, 0);
+        OrdBuy ordBuy = new OrdBuy(stockID, traderAccountID, amount, price);
         try{
             Thread.sleep(30);
         }catch(InterruptedException ie){
@@ -202,7 +203,7 @@ public class Utility {
         int traderAccountID = 6 + new Random().nextInt(100);
         int amount = 100 + new Random().nextInt(100);
         int price = 200 + new Random().nextInt(100); 
-        OrdSell ordSell = new OrdSell(stockID, traderAccountID, amount, price, 0);
+        OrdSell ordSell = new OrdSell(stockID, traderAccountID, amount, price);
         try{
             Thread.sleep(120);
         }catch(InterruptedException ie){

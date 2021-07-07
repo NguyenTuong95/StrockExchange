@@ -53,11 +53,10 @@ public class SelectData {
             int amount = result.getInt(4);
             int price = result.getInt(5);
             int exchangeAmount = result.getInt(6);
-            //if(amount > exchangeAmount){
             amount -= exchangeAmount;
-            OrdBuy ordBuy = new OrdBuy(stockID, traderAccountID, amount, price, exchangeAmount);
-            lstData.add(ordBuy);
-           //}     
+            OrdBuy ordBuy = new OrdBuy(stockID, traderAccountID, amount, price);
+            ordBuy.setExchangeAmount(exchangeAmount);
+            lstData.add(ordBuy);   
         }
 
       }catch(SQLException ex){
@@ -85,11 +84,10 @@ public class SelectData {
             int amount = result.getInt(4);
             int price = result.getInt(5);
             int exchangeAmount = result.getInt(6);
-            //if(amount > exchangeAmount){
             amount = amount - exchangeAmount;
-            OrdSell ordSell = new OrdSell(stockID, traderAccountID, amount, price, exchangeAmount);
-            lstData.add(ordSell);
-            //}          
+            OrdSell ordSell = new OrdSell(stockID, traderAccountID, amount, price);
+            ordSell.setExchangeAmount(exchangeAmount);
+            lstData.add(ordSell);       
         }
 
       }catch(SQLException ex){

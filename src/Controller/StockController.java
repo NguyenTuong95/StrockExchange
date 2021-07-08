@@ -11,6 +11,7 @@ import Model.TransactionDetail;
 
 public class StockController implements Runnable{
 
+    private static final int TIME_DELAY = 15000;
     private PriorityBlockingQueue<OrdSell> pSells;
     private PriorityBlockingQueue<OrdBuy> pBuys;
     private InsertData insertData;
@@ -22,8 +23,8 @@ public class StockController implements Runnable{
         pBuys = new PriorityBlockingQueue<>();
         insertData = InsertData.getInstance();
 
-        Thread t1 = new Thread(new OrdBuyController(pBuys));
-        Thread t2 = new Thread(new OrdSellController(pSells));
+        Thread t1 = new Thread(new OrdBuyController(pBuys, stockID));
+        Thread t2 = new Thread(new OrdSellController(pSells, stockID));
         t1.start();
         t2.start();
 
@@ -32,9 +33,9 @@ public class StockController implements Runnable{
     @Override
     public void run() {
 
-        //while(cnt < 10){
+        while(true){
             try {
-                Thread.sleep(900);
+                Thread.sleep(TIME_DELAY); // 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -55,8 +56,6 @@ public class StockController implements Runnable{
                         System.out.println("********************************");
                         int amount = (ordBuy.getAmount() < ordSell.getAmount()) ? ordBuy.getAmount() : ordSell.getAmount();
                         TransactionDetail transactionDetail = new TransactionDetail(ordBuy.getOrderBuyID(), ordSell.getOrderSellID(), currentTransactionID, amount, ordBuy.getPrice());
-                        //Transaction transaction = new Transaction(currentTransactionID);    
-                        //insertData.insertTransaction(transaction);
                         insertData.insertTransactionDetail(transactionDetail);                        
                                                          
                         break;
@@ -66,7 +65,7 @@ public class StockController implements Runnable{
             }
         currentTransactionID++;          
         cnt++;
-   // }
+    }
     }   
 
 

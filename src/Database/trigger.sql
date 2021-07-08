@@ -14,7 +14,7 @@ Create trigger updateExchangeAmount
         where 
 			orderBuyID = ordBuyID;
 		update order_sell
-        set  exchangeAmount = exchangeAmount + amount
+        set  exchangeAmount = exchangeAmount - amount
          where 
 			orderSellID = ordSellID;
     end$$

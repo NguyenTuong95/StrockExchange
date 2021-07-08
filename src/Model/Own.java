@@ -5,6 +5,12 @@ public class Own {
     private int stockID;
     private int amount;
 
+    public Own(int traderAccountID, int stockID, int amount){
+        this.traderAccountID = traderAccountID;
+        this.stockID = stockID;
+        this.amount = amount;
+    }
+    
     public int getTraderAccountID() {
         return this.traderAccountID;
     }

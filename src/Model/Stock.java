@@ -1,7 +1,7 @@
 package Model;
 
 
-public class Stock {
+public class Stock implements Comparable<Stock>{
 
     private int stockID;
     private int companyID;
@@ -77,7 +77,13 @@ public class Stock {
     @Override
     public String toString() { 
         return " --[STOCK] ID: " + this.stockID + " code: " + this.code+ " lastPrice: " + this.lastPrice 
-        + "minPrice: " + this.minPrice + "maxPrice: " + this.maxPrice + "--";
+        + " minPrice: " + this.minPrice + " maxPrice: " + this.maxPrice + " --";
+    }
+
+    @Override
+    public int compareTo(Stock o) {
+        // TODO Auto-generated method stub
+        return this.minPrice - o.minPrice;
     }
 
 }

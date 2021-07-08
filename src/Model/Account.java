@@ -2,7 +2,7 @@ package Model;
 
 import Security.EncryptString;
 
-public class Account {
+public class Account implements Comparable<Account>{
     private int accountID;
     private String fName;
     private String lName;
@@ -110,5 +110,13 @@ public class Account {
         return " --[ACCOUNT] ID: " + this.accountID + " fName: " + this.fName + " lName: " + this.lName
         + " Address: " + this.address + " phone: " + this.phone + " email: " + this.email + " --";
     }
+
+    @Override
+    public int compareTo(Account o) {
+        // TODO Auto-generated method stub
+        return this.username.compareTo(o.getUsername());
+    }
+
+    
 
 }

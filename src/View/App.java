@@ -9,7 +9,7 @@ public class App {
     private static OrdSell ordSell;
     public static void main(String[] args) throws Exception {
         Utility utility;
-        utility = Utility.getInstance();
+        //utility = Utility.getInstance();
 
         //utility.generateData();
 

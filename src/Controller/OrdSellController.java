@@ -14,12 +14,13 @@ public class OrdSellController implements Runnable{
     private SelectData selectData;
     private Queue<OrdSell> lstDataOrdSell;
 
-   public OrdSellController(PriorityBlockingQueue<OrdSell> sell){
+   public OrdSellController(PriorityBlockingQueue<OrdSell> sell, int stockID){
        this.sell = sell;
 
        this.insertData = InsertData.getInstance();
        this.selectData = SelectData.getInstance();
-       lstDataOrdSell = selectData.selectDataOrdSell();
+       String sql = "SELECT * FROM Order_Sell WHERE exchangeAmount > 0 AND stockID = " + stockID;
+       lstDataOrdSell = selectData.selectDataOrdSell(sql);
    }
 
     @Override

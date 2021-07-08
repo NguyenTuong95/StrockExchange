@@ -15,12 +15,13 @@ public class OrdBuyController implements Runnable{
     private SelectData selectData;
     private  Queue<OrdBuy> lstDataOrdBuy;
 
-   public OrdBuyController(PriorityBlockingQueue<OrdBuy> buy){
+   public OrdBuyController(PriorityBlockingQueue<OrdBuy> buy, int stockID){
     this.buy = buy;
  
     insertData = InsertData.getInstance();
     selectData = SelectData.getInstance();
-    lstDataOrdBuy = selectData.selectDataOrdBuy();
+    String sql = "SELECT * FROM Order_Buy WHERE exchangeAmount < amount AND stockID = " + stockID;
+    lstDataOrdBuy = selectData.selectDataOrdBuy(sql);
    }
 
     @Override

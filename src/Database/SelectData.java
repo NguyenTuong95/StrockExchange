@@ -5,9 +5,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
-
 import Model.Account;
 import Model.Company;
 import Model.OrdBuy;
@@ -38,14 +35,12 @@ public class SelectData {
         return instance;
     }
 
-    public Queue<OrdBuy> selectDataOrdBuy(String sql){
-        Queue<OrdBuy> lstData = new PriorityQueue<>();
+    public List<OrdBuy> selectDataOrdBuy(String sql){
+        List<OrdBuy> lstData = new ArrayList<>();
 
         if(connection == null){       
             return null;
         }
-        
-        //String sql = "SELECT * FROM Order_Buy WHERE exchangeAmount < amount";
 
       try{
         Statement statement = connection.createStatement();
@@ -69,15 +64,12 @@ public class SelectData {
         return lstData;
     }
 
-    public Queue<OrdSell> selectDataOrdSell(String sql){
-        Queue<OrdSell> lstData = new PriorityQueue<>();
+    public List<OrdSell> selectDataOrdSell(String sql){
+        List<OrdSell> lstData = new ArrayList<>();
 
         if(connection == null){       
             return null;
         }
-        
-        //String sql = "SELECT * FROM Order_Sell WHERE exchangeAmount > 0";
-
       try{
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(sql);
@@ -100,8 +92,8 @@ public class SelectData {
         return lstData;
     }
 
-    public Queue<Stock> selectDataStocks(String sql){
-        Queue<Stock> lstData = new PriorityQueue<>();
+    public List<Stock> selectDataStocks(String sql){
+        List<Stock> lstData = new ArrayList<>();
 
         if(connection == null){       
             return null;
@@ -130,8 +122,8 @@ public class SelectData {
         return lstData;
     }
 
-    public Queue<Company> selectDataCompany(String sql){
-        Queue<Company> lstData = new PriorityQueue<>();
+    public List<Company> selectDataCompany(String sql){
+        List<Company> lstData = new ArrayList<>();
 
         if(connection == null){       
             return null;
@@ -159,8 +151,8 @@ public class SelectData {
         return lstData;
     }
 
-    public Queue<Own> selectDataOwn(String sql){
-        Queue<Own> lstData = new PriorityQueue<>();
+    public List<Own> selectDataOwn(String sql){
+        List<Own> lstData = new ArrayList<>();
 
         if(connection == null){       
             return null;
@@ -185,8 +177,8 @@ public class SelectData {
         return lstData;
     }
 
-    public Queue<Account> selectDataAccount(String sql){
-        Queue<Account> lstData = new PriorityQueue<>();
+    public List<Account> selectDataAccount(String sql){
+        List<Account> lstData = new ArrayList<>();
 
         if(connection == null){       
             return null;

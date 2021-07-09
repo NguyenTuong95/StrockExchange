@@ -1,5 +1,6 @@
 package Controller;
 
+import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.PriorityBlockingQueue;
 
@@ -12,7 +13,7 @@ public class OrdSellController implements Runnable{
 
     private InsertData insertData;
     private SelectData selectData;
-    private Queue<OrdSell> lstDataOrdSell;
+    private List<OrdSell> lstDataOrdSell;
 
    public OrdSellController(PriorityBlockingQueue<OrdSell> sell, int stockID){
        this.sell = sell;
@@ -25,13 +26,12 @@ public class OrdSellController implements Runnable{
 
     @Override
     public void run() {
-        while(lstDataOrdSell.size() > 0){
-            OrdSell item = lstDataOrdSell.poll();
-            insertData.insertOrdSell(item);
-            //System.out.println(item);         
-            sell.add(item);       
-            
+
+        for(OrdSell item : lstDataOrdSell){
+            insertData.insertOrdSell(item);      
+            sell.add(item);      
         }
+
     }
 
     

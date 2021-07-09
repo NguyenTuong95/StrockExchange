@@ -8,7 +8,8 @@ public class Transaction {
     private static int cnt = 0;
 
     public Transaction(){
-        this.transactionID = cnt++;      
+        this.transactionID = cnt++;
+        this.createTime = new Timestamp(System.currentTimeMillis());      
     }
 
     public Transaction(int transactionID){

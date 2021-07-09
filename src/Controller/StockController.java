@@ -16,8 +16,7 @@ public class StockController implements Runnable{
     private PriorityBlockingQueue<OrdBuy> pBuys;
     private InsertData insertData;
     private static int currentTransactionID = 1;
-    private int cnt = 0;
-
+ 
     public StockController(int stockID){
         pSells = new PriorityBlockingQueue<>();
         pBuys = new PriorityBlockingQueue<>();
@@ -64,7 +63,6 @@ public class StockController implements Runnable{
 
             }
         currentTransactionID++;          
-        cnt++;
     }
     }   
 
